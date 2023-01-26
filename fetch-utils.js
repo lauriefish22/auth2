@@ -10,28 +10,32 @@ export async function getUser() {
 }
 
 export async function signIn(email, password) {
-    const { data } = await supabase.auth.signIn({
+    const { user } = await client.auth.signIn({
         email: email,
         password: password,
     });
+
+    return user;
 }
 
 export async function signUp(email, password) {
-    const { data } = await client.auth.signUp({
+    const { user } = await client.auth.signUp({
         email: email,
         password: password,
     });
 
-    return data;
+    return user;
 }
 
 export async function checkAuth() {
     const user = await getUser();
-
-    if (!getUser()) location.replace('../other');
+    if (!user) location.replace('../');
 }
 
-export async function redirectIfLoggedIn() {}
+export async function redirectIfLoggedIn() {
+    const user = await getUser();
+    if (user) location.replace('../other-page');
+}
 
 export async function signOut() {
     const response = await client.auth.signOut();
