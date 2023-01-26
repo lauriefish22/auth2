@@ -10,13 +10,22 @@ const createButtonEl = document.querySelector('#create-button');
 // Redirect to /other-page on successful auth
 signUpForm.addEventListener('submit', async (e) => {
     e.preventDefault;
+
     const data = new FormData(signUpForm);
-    await signUp(data.get('email'), data.get('password'));
+    alert(data.get('email', data.get('password')));
+    const user = await signUp(data.get('email'), data.get('password'));
 });
 // Redirect to /other-page when page loads if user is authenticated
 signInForm.addEventListener('submit', async (e) => {
     e.preventDefault;
     const data = new FormData(signInForm);
+    alert(data.get('email', data.get('password')));
+    const user = await signUp(data.get('email'), data.get('password'));
     await signIn(data.get('email'), data.get('password'));
     window.location.href = '../other-page';
+    if (user) {
+        redirectIfLoggedIn();
+    } else {
+        console.error(user);
+    }
 });
