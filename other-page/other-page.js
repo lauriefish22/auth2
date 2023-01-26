@@ -7,5 +7,6 @@ checkAuth();
 
 // add event listener to the logout button and call logout
 logOutButtonEl.addEventListener('click', () => {
-    console.log('click');
+    window.location.href = '../';
+    signOut();
 });
