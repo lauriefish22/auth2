@@ -1,4 +1,4 @@
-import { getUser, signOut, signUp, signIn } from './fetch-utils.js';
+import { getUser, signOut, signUp, signIn, redirectIfLoggedIn } from './fetch-utils.js';
 
 const signInForm = document.getElementById('sign-in');
 
